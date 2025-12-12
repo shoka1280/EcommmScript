@@ -106,6 +106,7 @@
    
     let prodId=button.dataset.productId;
     let prod=button.dataset.productName;
+    let totalQuantity=0;
 
     let matchedItem;
     cart.forEach(item=>
@@ -127,8 +128,13 @@
       quantity:1
     });
     }
+    cart.forEach((item)=>
+    {
+      totalQuantity+=item.quantity;
+
+    })
+    document.querySelector('.js-cart-quantity')
+    .innerHTML=totalQuantity;
     
-    // cart.push(products.name,products.priceCents);
-    console.log(cart);
   }))
   
