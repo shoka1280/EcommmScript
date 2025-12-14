@@ -41,6 +41,8 @@
 //     priceCents:18.99,
 //   }
 //   ];//list of product
+  import {cart } from '../data/cart.js'
+  
   let productHtml=``;
   products.forEach((products) =>
   {
@@ -98,13 +100,14 @@
   });
 
   document.querySelector('.js-product-grid').innerHTML=productHtml;
+
   document.querySelectorAll('.js-add-to-cart')
   .forEach((button)=>
   button.addEventListener('click',()=>{
     console.log('added');
+  
    
-   
-    let prodId=button.dataset.productId;
+    let prodId=button.dataset.productId;//dattaset,
     let prod=button.dataset.productName;
     let totalQuantity=0;
 
