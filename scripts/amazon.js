@@ -41,7 +41,7 @@
 //     priceCents:18.99,
 //   }
 //   ];//list of product
-  import {cart } from '../data/cart.js'
+  import {cart,addToCart } from '../data/cart.js'
   import {products} from '../data/products.js'
   let productHtml=``;
   products.forEach((products) =>
@@ -98,6 +98,18 @@
         </div>`;
         
   });
+  function updateCartQuantity()
+  {
+        let totalQuantity=0;
+    cart.forEach((Cartitem)=>
+    {
+      totalQuantity+=Cartitem.quantity;
+
+    })
+    document.querySelector('.js-cart-quantity')
+    .innerHTML=totalQuantity;
+  }
+
 
   document.querySelector('.js-product-grid').innerHTML=productHtml;
 
@@ -105,39 +117,15 @@
   .forEach((button)=>
   button.addEventListener('click',()=>{
     console.log('added');
-  
+   
    
     let prodId=button.dataset.productId;//dattaset,
-    let prod=button.dataset.productName;
-    let totalQuantity=0;
 
-    let matchedItem;
-    cart.forEach(item=>
-    {
-      if(prodId===item.productId)
-      {
-        matchedItem=item;
-      }
-    })
+    addToCart(prodId);
 
-    if( matchedItem)
-    {
-      matchedItem.quantity+=1;
-    }
-    else{
-      cart.push({
-      productId:prodId,
-      productName:prod,
-      quantity:1
-    });
-    }
-    cart.forEach((item)=>
-    {
-      totalQuantity+=item.quantity;
+    updateCartQuantity();
 
-    })
-    document.querySelector('.js-cart-quantity')
-    .innerHTML=totalQuantity;
+
     
   }))
   
